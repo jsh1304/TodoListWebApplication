@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * 1. 알맞은 Controller 메서드 식별 : login -> LoginController.gotoLoginPage
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 4. 뷰를 실행
  * **/
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 
     private AuthenticationService authenticationService;

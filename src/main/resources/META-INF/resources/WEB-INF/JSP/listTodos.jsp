@@ -4,7 +4,7 @@
         <title> Todo Lists 페이지 </title>
     </head>
     <body>
-        <div> 환영합니다. </div>
+        <div> 환영합니다. ${name} </div>
         <div> 당신의 할일: ${todos} </div>
     </body>
 </html>

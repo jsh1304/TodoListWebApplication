@@ -6,6 +6,6 @@
     <body>
         <div> 환영합니다. </div>
         <div> 이름: ${name} </div>
-        <div> 비밀번호: ${password} </div>
+        <div> 당신의 Todos <a href="list-todos">관리</a> </div>
     </body>
 </html>
