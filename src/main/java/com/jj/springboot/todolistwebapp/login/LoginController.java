@@ -31,6 +31,11 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * "/login" 엔드포인트에 대한 POST 요청을 처리
+     * 사용자 자격 증명을 확인하고 인증이 성공하면 환영 페이지로 리디렉션
+     * 그렇지 않으면 로그인 페이지에 오류 메시지를 표시
+     */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public String gotoWelcomePage(@RequestParam String name,
                                   @RequestParam String password,
