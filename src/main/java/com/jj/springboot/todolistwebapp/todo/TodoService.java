@@ -13,9 +13,9 @@ public class TodoService {
     static {
         todos.add(new Todo(1, "hh", "AWS 배우기",
                 LocalDate.now().plusYears(1), false));
-        todos.add(new Todo(1, "hh", "DevOps 배우기",
+        todos.add(new Todo(2, "hh", "DevOps 배우기",
                 LocalDate.now().plusYears(2), false));
-        todos.add(new Todo(1, "hh", "Frontend 배우기",
+        todos.add(new Todo(3, "hh", "Frontend 배우기",
                 LocalDate.now().plusYears(3), false));
     }
 

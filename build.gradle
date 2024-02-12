@@ -22,6 +22,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+
+
+	implementation 'jakarta.servlet:jakarta.servlet-api'
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
+
+
 }
 
 tasks.named('test') {
