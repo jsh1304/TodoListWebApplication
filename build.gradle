@@ -28,6 +28,9 @@ dependencies {
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 
+	implementation 'org.webjars:bootstrap:5.3.0'
+	implementation 'org.webjars:jquery:3.6.0'
+
 
 }
 
