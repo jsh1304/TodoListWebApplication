@@ -4,8 +4,9 @@
         <title> 환영 페이지 </title>
     </head>
     <body>
-        <div> 환영합니다. ${name}</div>
-        <hr>
-        <div> 당신의 Todos <a href="list-todos">관리</a> </div>
+        <div class="container">
+            <h1> 환영합니다. ${name}</h1>
+            <a> 당신의 Todos <a href="list-todos">관리</a>
+        </div>
     </body>
 </html>
