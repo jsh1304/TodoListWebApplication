@@ -28,7 +28,10 @@ public class TodoController {
 
     /// "add-투두" GET 요청에 대한 핸들러. 새로운 할 일 페이지를 보여줌
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
-    public String showNewTodoPage() {
+    public String showNewTodoPage(ModelMap model) {
+        String userName = (String) model.get("name");
+        Todo todo = new Todo(0, userName, "", LocalDate.now().plusYears(1), false);
+        model.put("todo", todo);
         return "todo";
     }
 
