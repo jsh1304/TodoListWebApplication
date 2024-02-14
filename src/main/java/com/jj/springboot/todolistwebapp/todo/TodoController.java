@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -32,7 +34,10 @@ public class TodoController {
 
     // "add-투두" POST 요청에 대한 핸들러. 새로운 할 일을 추가
     @RequestMapping(value = "add-todo", method = RequestMethod.POST)
-    public String addNewTodo() {
+    public String addNewTodo(@RequestParam String description, ModelMap model) {
+        String userName = (String) model.get("name");
+        todoService.addTodo(userName, description,
+                LocalDate.now().plusYears(1), false);
         return "redirect:list-todos";
     }
 }
