@@ -13,6 +13,7 @@
             <form:form method="post" modelAttribute="todo">
                 설명: <form:input type="text" path="description"
                                 required="required"/>
+                     <form:errors path="description" cssClass="text-warning"/>
                 <form:input type="hidden" path="id"/>
                 <form:input type="hidden" path="done"/>
                 <input type="submit" class="btn btn-success"/>
