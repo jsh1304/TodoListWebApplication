@@ -52,8 +52,17 @@ public class TodoController {
     }
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
-
         todoService.deleteById(id);
         return "redirect:list-todos";
+    }
+
+    @RequestMapping("update-todo")
+    public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
+        // todoService의 findById 메소드를 호출하여 주어진 id를 가진 투두 객체를 가져옴
+        Todo todo = todoService.findById(id);
+        // 투두 객체를 모델에 추가합니다. 이렇게 하면 뷰에서 접근
+        model.addAttribute("todo", todo);
+        // 렌더링할 뷰의 이름을 반환
+        return "todo";
     }
 }
