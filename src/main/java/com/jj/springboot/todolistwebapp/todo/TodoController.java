@@ -56,7 +56,7 @@ public class TodoController {
         return "redirect:list-todos";
     }
 
-    @RequestMapping("update-todo")
+    @RequestMapping(value = "update-todo", method = RequestMethod.GET)
     public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
         // todoService의 findById 메소드를 호출하여 주어진 id를 가진 투두 객체를 가져옴
         Todo todo = todoService.findById(id);
@@ -64,5 +64,17 @@ public class TodoController {
         model.addAttribute("todo", todo);
         // 렌더링할 뷰의 이름을 반환
         return "todo";
+    }
+    @RequestMapping(value = "update-todo", method = RequestMethod.POST)
+    public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "todo";
+        }
+
+        String username = (String) model.get("name");
+        todo.setUsername(username);
+        todoService.updateTodo(todo);
+        return "redirect:list-todos";
     }
 }
