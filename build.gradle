@@ -33,6 +33,9 @@ dependencies {
 
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
+	implementation 'org.webjars:bootstrap-datepicker:1.9.0'
+
+
 }
 
 tasks.named('test') {
