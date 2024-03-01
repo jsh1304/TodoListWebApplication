@@ -1,5 +1,7 @@
 package com.jj.springboot.todolistwebapp.login;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,15 +20,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class WelcomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String gotoLoginPage(ModelMap model) {
-        model.put("name", "jj");
+    public String gotoWelcomePage(ModelMap model) {
+        model.put("name", getLoggedInUsername());
         return "welcome";
     }
 
-    /**
-     * "/login" 엔드포인트에 대한 POST 요청을 처리
-     * 사용자 자격 증명을 확인하고 인증이 성공하면 환영 페이지로 리디렉션
-     * 그렇지 않으면 로그인 페이지에 오류 메시지를 표시
-     */
+    private String getLoggedInUsername() {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
 
+        return authentication.getName();
+    }
 }

@@ -1,6 +1,8 @@
 package com.jj.springboot.todolistwebapp.todo;
 
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -23,15 +25,23 @@ public class TodoController {
     // "list-todos" URL 요청을 처리하는 메소드
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model) {
-        List<Todo> todos = todoService.findByUsername("hh");
+        String userName = getLoggedInUsername(model);
+        List<Todo> todos = todoService.findByUsername(userName);
         model.addAttribute("todos", todos);
         return "listTodos";
+    }
+
+    private String getLoggedInUsername(ModelMap model) {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        return authentication.getName();
     }
 
     /// "add-투두" GET 요청에 대한 핸들러. 새로운 할 일 페이지를 보여줌
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
     public String showNewTodoPage(ModelMap model) {
-        String userName = (String) model.get("name");
+        String userName = getLoggedInUsername(model);
         Todo todo = new Todo(0, userName, "기본 설명", LocalDate.now().plusYears(1), false);
         model.put("todo", todo);
         return "todo";
@@ -45,7 +55,7 @@ public class TodoController {
             return "todo";
         }
 
-        String userName = (String) model.get("name");
+        String userName = getLoggedInUsername(model);
         todoService.addTodo(userName, todo.getDescription(),
                 todo.getTargetDate(), false);
         return "redirect:list-todos";
@@ -72,7 +82,7 @@ public class TodoController {
             return "todo";
         }
 
-        String username = (String) model.get("name");
+        String username = getLoggedInUsername(model);
         todo.setUsername(username);
         todoService.updateTodo(todo);
         return "redirect:list-todos";

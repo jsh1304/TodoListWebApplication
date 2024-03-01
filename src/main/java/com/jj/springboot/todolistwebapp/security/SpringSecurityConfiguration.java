@@ -21,6 +21,7 @@ public class SpringSecurityConfiguration {
 
         // 사용자 세부 정보 생성
         UserDetails userDetails = User.builder()
+                .passwordEncoder(passwordEncoder)
                 .username("jj")
                 .password("1234") // 비밀번호 인코딩
                 .roles("USER", "ADMIN")

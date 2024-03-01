@@ -23,7 +23,9 @@ public class TodoService {
     }
 
     public List<Todo> findByUsername(String username) {
-        return todos;
+        // 투두 객체의 id가 사용자가 찾는 id와 같은지 확인
+        Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
+        return todos.stream().filter(predicate).toList();
     }
 
     public void addTodo(String username, String description, LocalDate targetDate, boolean done) {
